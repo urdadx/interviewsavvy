@@ -1,0 +1,4 @@
+{
+  "ext": "js,ts,coffee,json,env",
+  "watch": ["src", ".env.local"]
+}
