@@ -10,26 +10,29 @@
 
 // Import Routes
 
+import { Route as authLoginImport } from "./routes/(auth)/login";
+import { Route as authRegisterImport } from "./routes/(auth)/register";
 import { Route as rootRoute } from "./routes/__root";
 import { Route as IndexImport } from "./routes/index";
-import { Route as authRegisterImport } from "./routes/(auth)/register";
-import { Route as authLoginImport } from "./routes/(auth)/login";
 
 // Create/Update Routes
 
 const IndexRoute = IndexImport.update({
 	path: "/",
 	getParentRoute: () => rootRoute,
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 } as any);
 
 const authRegisterRoute = authRegisterImport.update({
 	path: "/register",
 	getParentRoute: () => rootRoute,
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 } as any);
 
 const authLoginRoute = authLoginImport.update({
 	path: "/login",
 	getParentRoute: () => rootRoute,
+	// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 } as any);
 
 // Populate the FileRoutesByPath interface

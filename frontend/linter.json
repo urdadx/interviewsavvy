@@ -1,4 +1,15 @@
 {
 	"$schema": "https://biomejs.dev/schemas/1.9.2/schema.json",
-	"linter": { "enabled": true, "rules": { "recommended": true } }
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"suspicious": {
+				"noExplicitAny": "off",
+				"noConsoleLog": "off"
+			},
+			"style": {
+				"noNonNullAssertion": "off"
+			}
+		}
+	}
 }
