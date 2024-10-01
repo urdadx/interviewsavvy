@@ -6,12 +6,17 @@
   "scripts": {
     "dev": "nodemon -r dotenv/config src/index.ts dotenv_config_path=./.env.local dontenv_config_debug=true",
     "start": "node -r dotenv/config dist/index.js dotenv_config_path=./.env.local dontenv_config_debug=true",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "pnpm biome lint --write ./src",
+    "format": "pnpm biome format --write ./src",
+    "lint-check": "pnpm biome lint ./src",
+    "format-check": "pnpm biome format ./src"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@biomejs/biome": "^1.9.3",
     "@types/express": "^5.0.0",
     "@types/node": "^22.7.4",
     "nodemon": "^3.1.0",
