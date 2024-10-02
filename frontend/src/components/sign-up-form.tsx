@@ -36,7 +36,11 @@ export const RegisterForm = () => {
 								<Input type="email" required placeholder="Email address" />
 							</div>
 							<div className="grid gap-2">
-								<Input required placeholder="Password (8+ characters please)" />
+								<Input
+									type="password"
+									required
+									placeholder="Password (8+ characters please)"
+								/>
 							</div>
 							<Button type="submit" className="w-full">
 								Create account

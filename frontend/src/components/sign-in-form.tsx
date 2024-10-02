@@ -33,7 +33,7 @@ export const LoginForm = () => {
 								<Input type="email" required placeholder="Email address" />
 							</div>
 							<div className="grid gap-2">
-								<Input required placeholder="Password" />
+								<Input type="password" required placeholder="Password" />
 							</div>
 							<Button type="submit" className="w-full">
 								Sign In
