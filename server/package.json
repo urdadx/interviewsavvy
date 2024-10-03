@@ -10,21 +10,47 @@
     "lint": "pnpm biome lint --write ./src",
     "format": "pnpm biome format --write ./src",
     "lint-check": "pnpm biome lint ./src",
-    "format-check": "pnpm biome format ./src"
+    "format-check": "pnpm biome format ./src",
+    "migrate-dev": "pnpm dotenv -e .env.local -- pnpm prisma migrate dev",
+    "generate": "pnpm dotenv -e .env.local -- pnpm prisma generate",
+    "db-pull": "pnpm dotenv -e .env.local -- pnpm prisma db pull",
+    "db-push": "pnpm dotenv -e .env.local -- pnpm prisma db push"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@biomejs/biome": "^1.9.3",
+    "@mermaid-js/mermaid-cli": "^11.2.0",
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
+    "@types/express-session": "^1.18.0",
+    "@types/http-errors": "^2.0.4",
     "@types/node": "^22.7.4",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.6",
     "nodemon": "^3.1.0",
+    "prisma-erd-generator": "^1.11.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.2"
   },
   "dependencies": {
+    "@prisma/client": "^5.20.0",
+    "@types/passport": "^1.0.16",
+    "@types/passport-google-oauth2": "^0.1.10",
+    "connect-redis": "^7.1.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.21.0"
+    "express": "^4.21.0",
+    "express-session": "^1.18.0",
+    "http-errors": "^2.0.0",
+    "ioredis": "^5.4.1",
+    "passport": "^0.7.0",
+    "passport-google-oauth2": "^0.2.0",
+    "pino": "^9.4.0",
+    "pino-pretty": "^11.2.2",
+    "prisma": "^5.20.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   }
 }
