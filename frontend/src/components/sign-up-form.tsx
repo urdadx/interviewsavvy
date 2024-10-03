@@ -9,7 +9,7 @@ export const RegisterForm = () => {
 				<div className="flex items-center justify-center lg:py-12 py-32">
 					<form className="mx-auto grid lg:w-[400px] w-[350px] gap-6">
 						<div className="grid gap-2 text-center">
-							<h1 className="text-2xl w-full font-medium text-wg-gray-900">
+							<h1 className="text-2xl w-full font-medium text-surface-900">
 								Sign up to Interview Savvy
 							</h1>
 							<div className="lg:flex lg:w-[400px] lg:items-center my-4 gap-3">
@@ -36,7 +36,11 @@ export const RegisterForm = () => {
 								<Input type="email" required placeholder="Email address" />
 							</div>
 							<div className="grid gap-2">
-								<Input required placeholder="Password (8+ characters please)" />
+								<Input
+									type="password"
+									required
+									placeholder="Password (8+ characters please)"
+								/>
 							</div>
 							<Button type="submit" className="w-full">
 								Create account

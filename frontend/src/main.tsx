@@ -1,6 +1,6 @@
+import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import { RouterProvider, createRouter } from "@tanstack/react-router";
 
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
@@ -16,7 +16,7 @@ declare module "@tanstack/react-router" {
 	}
 }
 
-// Render the app
+// biome-ignore lint/style/noNonNullAssertion: <explanation>
 const rootElement = document.getElementById("root")!;
 if (!rootElement.innerHTML) {
 	const root = ReactDOM.createRoot(rootElement);
