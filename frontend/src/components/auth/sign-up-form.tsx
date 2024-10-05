@@ -1,8 +1,8 @@
 import { Button, Input } from "@lemonsqueezy/wedges";
 import { Link } from "@tanstack/react-router";
-import { GoogleSVG } from "./google-svg";
+import { GoogleSVG } from "../svgs/google-svg";
 
-export const LoginForm = () => {
+export const RegisterForm = () => {
 	return (
 		<>
 			<div className="w-screen lg:grid lg:h-screen lg:grid-cols-2">
@@ -10,7 +10,7 @@ export const LoginForm = () => {
 					<form className="mx-auto grid lg:w-[400px] w-[350px] gap-6">
 						<div className="grid gap-2 text-center">
 							<h1 className="text-2xl w-full font-medium text-surface-900">
-								Sign in to Interview Savvy
+								Sign up to Interview Savvy
 							</h1>
 							<div className="lg:flex lg:w-[400px] lg:items-center my-4 gap-3">
 								<Button
@@ -24,28 +24,35 @@ export const LoginForm = () => {
 							<div className="relative flex items-center justify-center h-5 mb-2">
 								<div className="absolute top-[50%] w-full border-t border-light-95" />
 								<p className="relative z-10 text-sm text-wg-gray-400 bg-white px-2">
-									OR CONTINUE WITH
+									OR
 								</p>
 							</div>
 						</div>
 						<div className="grid gap-4 w-full">
 							<div className="grid gap-2">
+								<Input required placeholder="Name" />
+							</div>
+							<div className="grid gap-2">
 								<Input type="email" required placeholder="Email address" />
 							</div>
 							<div className="grid gap-2">
-								<Input type="password" required placeholder="Password" />
+								<Input
+									type="password"
+									required
+									placeholder="Password (8+ characters please)"
+								/>
 							</div>
 							<Button type="submit" className="w-full">
-								Sign In
+								Create account
 							</Button>
 						</div>
 						<div className="mt-4 text-center text-sm">
-							Don&apos;t have an account?{" "}
+							Already have an account?{" "}
 							<Link
-								to="/register"
-								className="underline font-semibold text-primary"
+								to="/login"
+								className="underline text-primary font-semibold"
 							>
-								Sign up
+								Log In
 							</Link>
 						</div>
 					</form>
