@@ -12,6 +12,10 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as ProblemsIndexImport } from './routes/problems/index'
+import { Route as OnboardingIndexImport } from './routes/onboarding/index'
+import { Route as ProblemsProblemSlugImport } from './routes/problems/$problem-slug'
+import { Route as OnboardingSlugImport } from './routes/onboarding/$slug'
 import { Route as authRegisterImport } from './routes/(auth)/register'
 import { Route as authLoginImport } from './routes/(auth)/login'
 
@@ -19,6 +23,26 @@ import { Route as authLoginImport } from './routes/(auth)/login'
 
 const IndexRoute = IndexImport.update({
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProblemsIndexRoute = ProblemsIndexImport.update({
+  path: '/problems/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const OnboardingIndexRoute = OnboardingIndexImport.update({
+  path: '/onboarding/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProblemsProblemSlugRoute = ProblemsProblemSlugImport.update({
+  path: '/problems/$problem-slug',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const OnboardingSlugRoute = OnboardingSlugImport.update({
+  path: '/onboarding/$slug',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -57,6 +81,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authRegisterImport
       parentRoute: typeof rootRoute
     }
+    '/onboarding/$slug': {
+      id: '/onboarding/$slug'
+      path: '/onboarding/$slug'
+      fullPath: '/onboarding/$slug'
+      preLoaderRoute: typeof OnboardingSlugImport
+      parentRoute: typeof rootRoute
+    }
+    '/problems/$problem-slug': {
+      id: '/problems/$problem-slug'
+      path: '/problems/$problem-slug'
+      fullPath: '/problems/$problem-slug'
+      preLoaderRoute: typeof ProblemsProblemSlugImport
+      parentRoute: typeof rootRoute
+    }
+    '/onboarding/': {
+      id: '/onboarding/'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/problems/': {
+      id: '/problems/'
+      path: '/problems'
+      fullPath: '/problems'
+      preLoaderRoute: typeof ProblemsIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -66,12 +118,20 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
+  '/onboarding/$slug': typeof OnboardingSlugRoute
+  '/problems/$problem-slug': typeof ProblemsProblemSlugRoute
+  '/onboarding': typeof OnboardingIndexRoute
+  '/problems': typeof ProblemsIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
+  '/onboarding/$slug': typeof OnboardingSlugRoute
+  '/problems/$problem-slug': typeof ProblemsProblemSlugRoute
+  '/onboarding': typeof OnboardingIndexRoute
+  '/problems': typeof ProblemsIndexRoute
 }
 
 export interface FileRoutesById {
@@ -79,14 +139,40 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
+  '/onboarding/$slug': typeof OnboardingSlugRoute
+  '/problems/$problem-slug': typeof ProblemsProblemSlugRoute
+  '/onboarding/': typeof OnboardingIndexRoute
+  '/problems/': typeof ProblemsIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/register'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/onboarding/$slug'
+    | '/problems/$problem-slug'
+    | '/onboarding'
+    | '/problems'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/register'
-  id: '__root__' | '/' | '/login' | '/register'
+  to:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/onboarding/$slug'
+    | '/problems/$problem-slug'
+    | '/onboarding'
+    | '/problems'
+  id:
+    | '__root__'
+    | '/'
+    | '/login'
+    | '/register'
+    | '/onboarding/$slug'
+    | '/problems/$problem-slug'
+    | '/onboarding/'
+    | '/problems/'
   fileRoutesById: FileRoutesById
 }
 
@@ -94,12 +180,20 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   authLoginRoute: typeof authLoginRoute
   authRegisterRoute: typeof authRegisterRoute
+  OnboardingSlugRoute: typeof OnboardingSlugRoute
+  ProblemsProblemSlugRoute: typeof ProblemsProblemSlugRoute
+  OnboardingIndexRoute: typeof OnboardingIndexRoute
+  ProblemsIndexRoute: typeof ProblemsIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   authLoginRoute: authLoginRoute,
   authRegisterRoute: authRegisterRoute,
+  OnboardingSlugRoute: OnboardingSlugRoute,
+  ProblemsProblemSlugRoute: ProblemsProblemSlugRoute,
+  OnboardingIndexRoute: OnboardingIndexRoute,
+  ProblemsIndexRoute: ProblemsIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -116,7 +210,11 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/login",
-        "/register"
+        "/register",
+        "/onboarding/$slug",
+        "/problems/$problem-slug",
+        "/onboarding/",
+        "/problems/"
       ]
     },
     "/": {
@@ -127,6 +225,18 @@ export const routeTree = rootRoute
     },
     "/register": {
       "filePath": "(auth)/register.tsx"
+    },
+    "/onboarding/$slug": {
+      "filePath": "onboarding/$slug.tsx"
+    },
+    "/problems/$problem-slug": {
+      "filePath": "problems/$problem-slug.tsx"
+    },
+    "/onboarding/": {
+      "filePath": "onboarding/index.tsx"
+    },
+    "/problems/": {
+      "filePath": "problems/index.tsx"
     }
   }
 }
