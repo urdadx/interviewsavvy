@@ -37,6 +37,6 @@ app.use(errorLogger);
 
 app.listen(process.env.PORT || 8000, () => {
   logger.info(
-    `Server is running on http://localhost:${process.env.PORT || 8000}`
+    `Server is running on http://localhost:${process.env.PORT || 8000}`,
   );
 });

@@ -72,7 +72,7 @@ const googleAuth = new GoogleStrategy(
 
       done(null, user);
     } catch (error) {}
-  }
+  },
 );
 
 const serialize = (user: any, done: any) => {

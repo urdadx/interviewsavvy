@@ -1,10 +1,7 @@
 import type { CorsOptions } from "cors";
 
 const cors: CorsOptions = {
-  origin:
-    process.env.NODE_ENV == "production"
-      ? (process.env.CLIENT_URI_PROD as string)
-      : (process.env.CLIENT_URI as string),
+  origin: process.env.FRONTEND_URL as string,
   credentials: true,
 };
 
