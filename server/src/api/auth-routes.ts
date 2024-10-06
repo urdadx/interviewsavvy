@@ -18,7 +18,7 @@ router.get("/google", passport.authenticate("google"));
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    successRedirect: process.env.FRONTEND_URL,
+    successRedirect: `${process.env.FRONTEND_URL}/callback`,
     failureRedirect: "/error",
   })
 );
@@ -34,7 +34,7 @@ router.post("/login", passport.authenticate("local"), (req, res) => {
 
 router.post("/signup", async (req, res, next) => {
   try {
-    const { email, password } = req.body;
+    const { name, email, password } = req.body;
 
     if (!isValidEmail(email)) {
       res.status(400).json({ message: "Invalid email format." });
@@ -58,10 +58,7 @@ router.post("/signup", async (req, res, next) => {
       return;
     }
 
-    const { avatarUrl, hashedPassword, name } = await prepareUser(
-      email,
-      password
-    );
+    const { avatarUrl, hashedPassword } = await prepareUser(email, password);
 
     await prisma.userData.create({
       data: {
@@ -70,9 +67,25 @@ router.post("/signup", async (req, res, next) => {
         email,
         passwordHash: hashedPassword,
       },
+
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        avatarUrl: true,
+        createdAt: true,
+        updatedAt: true,
+        AuthProvider: {
+          select: {
+            googleId: true,
+          },
+        },
+      },
     });
 
-    res.status(201).json({ message: "User created successfully" });
+    passport.authenticate("local")(req, res, function () {
+      res.status(200).json({ message: "Signup successfull" });
+    });
   } catch (error) {
     next(error);
   }
@@ -80,7 +93,7 @@ router.post("/signup", async (req, res, next) => {
 
 router.get("/me", authGuard, (req, res, next) => {
   try {
-    res.status(200).json({ user: req.user });
+    res.status(200).json({ ...req.user });
   } catch (error) {
     next(error);
   }

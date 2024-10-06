@@ -18,6 +18,7 @@ import { Route as ProblemsProblemSlugImport } from './routes/problems/$problem-s
 import { Route as OnboardingSlugImport } from './routes/onboarding/$slug'
 import { Route as authRegisterImport } from './routes/(auth)/register'
 import { Route as authLoginImport } from './routes/(auth)/login'
+import { Route as authCallbackImport } from './routes/(auth)/callback'
 
 // Create/Update Routes
 
@@ -56,6 +57,11 @@ const authLoginRoute = authLoginImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const authCallbackRoute = authCallbackImport.update({
+  path: '/callback',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -65,6 +71,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/(auth)/callback': {
+      id: '/callback'
+      path: '/callback'
+      fullPath: '/callback'
+      preLoaderRoute: typeof authCallbackImport
       parentRoute: typeof rootRoute
     }
     '/(auth)/login': {
@@ -116,6 +129,7 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/callback': typeof authCallbackRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
   '/onboarding/$slug': typeof OnboardingSlugRoute
@@ -126,6 +140,7 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/callback': typeof authCallbackRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
   '/onboarding/$slug': typeof OnboardingSlugRoute
@@ -137,6 +152,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/callback': typeof authCallbackRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
   '/onboarding/$slug': typeof OnboardingSlugRoute
@@ -149,6 +165,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/callback'
     | '/login'
     | '/register'
     | '/onboarding/$slug'
@@ -158,6 +175,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/callback'
     | '/login'
     | '/register'
     | '/onboarding/$slug'
@@ -167,6 +185,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/callback'
     | '/login'
     | '/register'
     | '/onboarding/$slug'
@@ -178,6 +197,7 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  authCallbackRoute: typeof authCallbackRoute
   authLoginRoute: typeof authLoginRoute
   authRegisterRoute: typeof authRegisterRoute
   OnboardingSlugRoute: typeof OnboardingSlugRoute
@@ -188,6 +208,7 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  authCallbackRoute: authCallbackRoute,
   authLoginRoute: authLoginRoute,
   authRegisterRoute: authRegisterRoute,
   OnboardingSlugRoute: OnboardingSlugRoute,
@@ -209,6 +230,7 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/callback",
         "/login",
         "/register",
         "/onboarding/$slug",
@@ -219,6 +241,9 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/callback": {
+      "filePath": "(auth)/callback.tsx"
     },
     "/login": {
       "filePath": "(auth)/login.tsx"
