@@ -1,0 +1,20 @@
+import Store from "connect-redis";
+import type { SessionOptions } from "express-session";
+import { redis } from "../config/redis";
+
+const REDIS_STORE = new Store({
+  client: redis,
+  prefix: "savvy:",
+});
+
+const session: SessionOptions = {
+  secret: "secret",
+  resave: false,
+  store: REDIS_STORE,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 72 * 60 * 60 * 1000,
+  },
+};
+
+export { session };

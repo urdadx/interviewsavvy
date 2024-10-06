@@ -1,0 +1,148 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator erd {
+  provider = "prisma-erd-generator"
+  output   = "../ERD.svg"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+model UserData {
+  id           String  @id @default(cuid())
+  name         String
+  email        String  @unique
+  passwordHash String?
+  avatarUrl    String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  InterviewSessions InterviewSession[]
+  UserPerformances  UserPerformance[]
+  AuthProvider      AuthProvider[]
+}
+
+model AuthProvider {
+  userId    String   @id
+  googleId  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user UserData @relation(fields: [userId], references: [id])
+}
+
+model InterviewSession {
+  id            String  @id @default(cuid())
+  userId        String
+  duration      Float
+  interviewType String
+  problemSetId  String? // Optional field for problem set if it's a tech interview
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user            UserData         @relation(fields: [userId], references: [id])
+  problemSet      ProblemSet?      @relation(fields: [problemSetId], references: [id])
+  userPerformance UserPerformance?
+}
+
+model ProblemSet {
+  id          String     @id @default(cuid())
+  name        String
+  slug        String     @unique
+  description String
+  difficulty  Difficulty
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  InterviewSessions InterviewSession[]
+}
+
+model UserPerformance {
+  id          String @id @default(cuid())
+  userId      String
+  interviewId String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  user      UserData         @relation(fields: [userId], references: [id])
+  interview InterviewSession @relation(fields: [interviewId], references: [id])
+
+  // Metrics relations
+  communicationMetrics    CommunicationMetrics?
+  criticalThinkingMetrics CriticalThinkingMetrics?
+  codeQualityMetrics      CodeQualityMetrics?
+  runtimeAnalysisMetrics  RuntimeAnalysisMetrics?
+}
+
+model CommunicationMetrics {
+  id                String @id @default(cuid())
+  userPerformanceId String @unique
+  fillerWords       Int
+  articulationRate  Float
+  speechRate        Float
+  numberofPauses    Int
+  stressPoints      Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  userPerformance UserPerformance @relation(fields: [userPerformanceId], references: [id])
+}
+
+model CriticalThinkingMetrics {
+  id                String @id @default(cuid())
+  userPerformanceId String @unique
+  score             Float
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  userPerformance UserPerformance @relation(fields: [userPerformanceId], references: [id])
+}
+
+model CodeQualityMetrics {
+  id                String @id @default(cuid())
+  userPerformanceId String @unique
+  codeStructure     Int
+  logicAccuracy     Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  userPerformance UserPerformance @relation(fields: [userPerformanceId], references: [id])
+}
+
+model RuntimeAnalysisMetrics {
+  id                String @id @default(cuid())
+  userPerformanceId String @unique
+  timeComplexity    String
+  spaceComplexity   String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  userPerformance UserPerformance @relation(fields: [userPerformanceId], references: [id])
+}
