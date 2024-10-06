@@ -11,7 +11,7 @@ import { VaulDrawer } from "./drawer";
 import useAuth from "../../hooks/useAuth";
 
 export const Navbar = () => {
-  const { user, userLoading } = useAuth();
+  const { user } = useAuth();
 
   return (
     <>

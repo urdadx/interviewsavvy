@@ -1,7 +1,7 @@
 import { Button, Input } from "@lemonsqueezy/wedges";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { GoogleSVG } from "../svgs/google-svg";
-import { ChangeEvent, useState } from "react";
+import { type ChangeEvent, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { googleLogin } from "../../lib/auth";
 import { api } from "../../api";

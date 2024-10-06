@@ -20,7 +20,7 @@ router.get(
   passport.authenticate("google", {
     successRedirect: `${process.env.FRONTEND_URL}/callback`,
     failureRedirect: "/error",
-  })
+  }),
 );
 
 router.post("/login", passport.authenticate("local"), (req, res) => {
@@ -83,7 +83,7 @@ router.post("/signup", async (req, res, next) => {
       },
     });
 
-    passport.authenticate("local")(req, res, function () {
+    passport.authenticate("local")(req, res, () => {
       res.status(200).json({ message: "Signup successfull" });
     });
   } catch (error) {
@@ -106,7 +106,7 @@ router.post("/logout", authGuard, (req, res, next) => {
         if (error) {
           throw createHttpError(400, "Bad/Invalid logout request");
         }
-      })
+      }),
     );
 
     res.status(200).json({
