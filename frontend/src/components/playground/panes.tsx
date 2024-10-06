@@ -1,15 +1,5 @@
 import { Tabs } from "@lemonsqueezy/wedges";
-import { Label } from "@lemonsqueezy/wedges";
-import { Textarea } from "@lemonsqueezy/wedges";
-import { Button } from "@lemonsqueezy/wedges";
-import { Input } from "@lemonsqueezy/wedges";
-import {
-  BookText,
-  Lightbulb,
-  MessageCircle,
-  Send,
-  SparklesIcon,
-} from "lucide-react";
+import { BookText, Lightbulb, SparklesIcon } from "lucide-react";
 import { useRef, useState } from "react";
 import type { ImperativePanelHandle } from "react-resizable-panels";
 import {
@@ -45,7 +35,6 @@ export default function Component() {
         direction="horizontal"
         className="flex flex-grow px-2 pb-2"
       >
-        {/* First Pane */}
         <ResizablePanel className="mr-1 " defaultSize={33} minSize={20}>
           <div className="h-full flex flex-col w-full px-3 py-2 bg-background border rounded-md">
             <Tabs
@@ -98,24 +87,23 @@ export default function Component() {
                 value="solution"
                 className="flex-grow overflow-auto"
               >
-                <SolutionTab />
+                <ScrollArea>
+                  <SolutionTab />
+                </ScrollArea>
               </Tabs.Content>
             </Tabs>
           </div>
         </ResizablePanel>
         <ResizableHandle />
 
-        {/* Second Pane (split into two) */}
         <ResizablePanel defaultSize={67} minSize={30}>
           <ResizablePanelGroup direction="vertical">
-            {/* Upper Half of Second Pane */}
             <ResizablePanel defaultSize={60} minSize={20}>
               <div className="h-full bg-white border rounded-md ">
                 <MonacoEditor />
               </div>
             </ResizablePanel>
             <ResizableHandle withHandle />
-            {/* Lower Half of Second Pane */}
             <ResizablePanel
               ref={panelRef}
               collapsible
