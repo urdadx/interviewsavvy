@@ -30,7 +30,7 @@ export const isValidPassword = (password: string) => {
 
 export const prepareUser = async (
   email: string,
-  password: string
+  password: string,
 ): Promise<{ hashedPassword: string; name: string; avatarUrl: string }> => {
   const hashedPassword = await hashPassword(password);
   const name = generateRandomUsername();

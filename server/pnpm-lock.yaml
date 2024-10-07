@@ -2473,9 +2473,11 @@ snapshots:
     dependencies:
       '@types/express': 5.0.0
 
-  '@types/qs@6.9.16': {}
+  /@types/qs@6.9.16:
+    resolution: {integrity: sha512-7i+zxXdPD0T4cKDuxCUXJ4wHcsJLwENa6Z3dCu8cfCK743OGy5Nu1RmAGqDPsoTDINVEcdXKRvR/zre+P2Ku1A==}
 
-  '@types/range-parser@1.2.7': {}
+  /@types/range-parser@1.2.7:
+    resolution: {integrity: sha512-hKormJbkJqzQGhziax5PItDUTMAM9uE2XXQmM37dyd4hVM+5aVl7oVxMVUiVQn2oCQFN/LKCZdvSM0pFRqbSmQ==}
 
   '@types/send@0.17.4':
     dependencies:
@@ -2487,6 +2489,10 @@ snapshots:
       '@types/http-errors': 2.0.4
       '@types/node': 22.7.4
       '@types/send': 0.17.4
+
+  /@types/swagger-jsdoc@6.0.4:
+    resolution: {integrity: sha512-W+Xw5epcOZrF/AooUM/PccNMSAFOKWZA5dasNyMujTwsBkU74njSJBpvCCJhHAJ95XRMzQrrW844Btu0uoetwQ==}
+    dev: true
 
   '@types/swagger-jsdoc@6.0.4': {}
 
