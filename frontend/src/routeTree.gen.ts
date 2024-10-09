@@ -11,6 +11,7 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as WaitlistImport } from './routes/waitlist'
 import { Route as IndexImport } from './routes/index'
 import { Route as ProblemsIndexImport } from './routes/problems/index'
 import { Route as OnboardingIndexImport } from './routes/onboarding/index'
@@ -21,6 +22,11 @@ import { Route as authLoginImport } from './routes/(auth)/login'
 import { Route as authCallbackImport } from './routes/(auth)/callback'
 
 // Create/Update Routes
+
+const WaitlistRoute = WaitlistImport.update({
+  path: '/waitlist',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   path: '/',
@@ -71,6 +77,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/waitlist': {
+      id: '/waitlist'
+      path: '/waitlist'
+      fullPath: '/waitlist'
+      preLoaderRoute: typeof WaitlistImport
       parentRoute: typeof rootRoute
     }
     '/(auth)/callback': {
@@ -129,6 +142,7 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/waitlist': typeof WaitlistRoute
   '/callback': typeof authCallbackRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
@@ -140,6 +154,7 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/waitlist': typeof WaitlistRoute
   '/callback': typeof authCallbackRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
@@ -152,6 +167,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/waitlist': typeof WaitlistRoute
   '/callback': typeof authCallbackRoute
   '/login': typeof authLoginRoute
   '/register': typeof authRegisterRoute
@@ -165,6 +181,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/waitlist'
     | '/callback'
     | '/login'
     | '/register'
@@ -175,6 +192,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/waitlist'
     | '/callback'
     | '/login'
     | '/register'
@@ -185,6 +203,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/waitlist'
     | '/callback'
     | '/login'
     | '/register'
@@ -197,6 +216,7 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  WaitlistRoute: typeof WaitlistRoute
   authCallbackRoute: typeof authCallbackRoute
   authLoginRoute: typeof authLoginRoute
   authRegisterRoute: typeof authRegisterRoute
@@ -208,6 +228,7 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  WaitlistRoute: WaitlistRoute,
   authCallbackRoute: authCallbackRoute,
   authLoginRoute: authLoginRoute,
   authRegisterRoute: authRegisterRoute,
@@ -230,6 +251,7 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/waitlist",
         "/callback",
         "/login",
         "/register",
@@ -241,6 +263,9 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/waitlist": {
+      "filePath": "waitlist.tsx"
     },
     "/callback": {
       "filePath": "(auth)/callback.tsx"

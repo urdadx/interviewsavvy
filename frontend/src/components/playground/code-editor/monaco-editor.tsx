@@ -10,7 +10,7 @@ import {
 	SelectValue,
 } from "@lemonsqueezy/wedges";
 import Editor from "@monaco-editor/react";
-import { ExpandIcon, RotateCcw, SettingsIcon } from "lucide-react";
+import { RotateCcw, SettingsIcon } from "lucide-react";
 import { useRef, useState } from "react";
 
 export const MonacoEditor = () => {
@@ -58,9 +58,6 @@ class Solution {
 						</Button>
 						<Button variant="transparent">
 							<SettingsIcon className="text-surface-500" size={18} />
-						</Button>
-						<Button variant="transparent">
-							<ExpandIcon className="text-surface-500" size={18} />
 						</Button>
 					</div>
 				</div>
