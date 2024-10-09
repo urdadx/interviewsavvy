@@ -8,7 +8,7 @@ interface VaulDrawerProps {
 export const VaulDrawer: React.FC<VaulDrawerProps> = ({ button, content }) => {
 	return (
 		<Drawer.Root direction="left">
-			<Drawer.Trigger>{button}</Drawer.Trigger>
+			<Drawer.Trigger asChild>{button}</Drawer.Trigger>
 			<Drawer.Portal>
 				<Drawer.Overlay className="fixed inset-0 bg-black/20" />
 				<Drawer.Content className="top-0 bottom-0 fixed flex border shadow-wg-md bg-white">
