@@ -32,6 +32,6 @@ if (!rootElement.innerHTML) {
         </UserProvider>
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
-    </StrictMode>
+    </StrictMode>,
   );
 }

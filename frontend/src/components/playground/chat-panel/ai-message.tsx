@@ -1,7 +1,7 @@
 export const AIMessage = () => {
-	return (
-		<>
-			<div className="">This is the AI message</div>
-		</>
-	);
+  return (
+    <>
+      <div className="">This is the AI message</div>
+    </>
+  );
 };

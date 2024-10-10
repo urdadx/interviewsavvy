@@ -10,200 +10,200 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as IndexImport } from './routes/index'
-import { Route as ProblemsIndexImport } from './routes/problems/index'
-import { Route as OnboardingIndexImport } from './routes/onboarding/index'
-import { Route as ProblemsProblemSlugImport } from './routes/problems/$problem-slug'
-import { Route as OnboardingSlugImport } from './routes/onboarding/$slug'
-import { Route as authRegisterImport } from './routes/(auth)/register'
-import { Route as authLoginImport } from './routes/(auth)/login'
-import { Route as authCallbackImport } from './routes/(auth)/callback'
+import { Route as rootRoute } from "./routes/__root";
+import { Route as IndexImport } from "./routes/index";
+import { Route as ProblemsIndexImport } from "./routes/problems/index";
+import { Route as OnboardingIndexImport } from "./routes/onboarding/index";
+import { Route as ProblemsProblemSlugImport } from "./routes/problems/$problem-slug";
+import { Route as OnboardingSlugImport } from "./routes/onboarding/$slug";
+import { Route as authRegisterImport } from "./routes/(auth)/register";
+import { Route as authLoginImport } from "./routes/(auth)/login";
+import { Route as authCallbackImport } from "./routes/(auth)/callback";
 
 // Create/Update Routes
 
 const IndexRoute = IndexImport.update({
-  path: '/',
+  path: "/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const ProblemsIndexRoute = ProblemsIndexImport.update({
-  path: '/problems/',
+  path: "/problems/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const OnboardingIndexRoute = OnboardingIndexImport.update({
-  path: '/onboarding/',
+  path: "/onboarding/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const ProblemsProblemSlugRoute = ProblemsProblemSlugImport.update({
-  path: '/problems/$problem-slug',
+  path: "/problems/$problem-slug",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const OnboardingSlugRoute = OnboardingSlugImport.update({
-  path: '/onboarding/$slug',
+  path: "/onboarding/$slug",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const authRegisterRoute = authRegisterImport.update({
-  path: '/register',
+  path: "/register",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const authLoginRoute = authLoginImport.update({
-  path: '/login',
+  path: "/login",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const authCallbackRoute = authCallbackImport.update({
-  path: '/callback',
+  path: "/callback",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/(auth)/callback': {
-      id: '/callback'
-      path: '/callback'
-      fullPath: '/callback'
-      preLoaderRoute: typeof authCallbackImport
-      parentRoute: typeof rootRoute
-    }
-    '/(auth)/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof authLoginImport
-      parentRoute: typeof rootRoute
-    }
-    '/(auth)/register': {
-      id: '/register'
-      path: '/register'
-      fullPath: '/register'
-      preLoaderRoute: typeof authRegisterImport
-      parentRoute: typeof rootRoute
-    }
-    '/onboarding/$slug': {
-      id: '/onboarding/$slug'
-      path: '/onboarding/$slug'
-      fullPath: '/onboarding/$slug'
-      preLoaderRoute: typeof OnboardingSlugImport
-      parentRoute: typeof rootRoute
-    }
-    '/problems/$problem-slug': {
-      id: '/problems/$problem-slug'
-      path: '/problems/$problem-slug'
-      fullPath: '/problems/$problem-slug'
-      preLoaderRoute: typeof ProblemsProblemSlugImport
-      parentRoute: typeof rootRoute
-    }
-    '/onboarding/': {
-      id: '/onboarding/'
-      path: '/onboarding'
-      fullPath: '/onboarding'
-      preLoaderRoute: typeof OnboardingIndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/problems/': {
-      id: '/problems/'
-      path: '/problems'
-      fullPath: '/problems'
-      preLoaderRoute: typeof ProblemsIndexImport
-      parentRoute: typeof rootRoute
-    }
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/(auth)/callback": {
+      id: "/callback";
+      path: "/callback";
+      fullPath: "/callback";
+      preLoaderRoute: typeof authCallbackImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/(auth)/login": {
+      id: "/login";
+      path: "/login";
+      fullPath: "/login";
+      preLoaderRoute: typeof authLoginImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/(auth)/register": {
+      id: "/register";
+      path: "/register";
+      fullPath: "/register";
+      preLoaderRoute: typeof authRegisterImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/onboarding/$slug": {
+      id: "/onboarding/$slug";
+      path: "/onboarding/$slug";
+      fullPath: "/onboarding/$slug";
+      preLoaderRoute: typeof OnboardingSlugImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/problems/$problem-slug": {
+      id: "/problems/$problem-slug";
+      path: "/problems/$problem-slug";
+      fullPath: "/problems/$problem-slug";
+      preLoaderRoute: typeof ProblemsProblemSlugImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/onboarding/": {
+      id: "/onboarding/";
+      path: "/onboarding";
+      fullPath: "/onboarding";
+      preLoaderRoute: typeof OnboardingIndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/problems/": {
+      id: "/problems/";
+      path: "/problems";
+      fullPath: "/problems";
+      preLoaderRoute: typeof ProblemsIndexImport;
+      parentRoute: typeof rootRoute;
+    };
   }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/callback': typeof authCallbackRoute
-  '/login': typeof authLoginRoute
-  '/register': typeof authRegisterRoute
-  '/onboarding/$slug': typeof OnboardingSlugRoute
-  '/problems/$problem-slug': typeof ProblemsProblemSlugRoute
-  '/onboarding': typeof OnboardingIndexRoute
-  '/problems': typeof ProblemsIndexRoute
+  "/": typeof IndexRoute;
+  "/callback": typeof authCallbackRoute;
+  "/login": typeof authLoginRoute;
+  "/register": typeof authRegisterRoute;
+  "/onboarding/$slug": typeof OnboardingSlugRoute;
+  "/problems/$problem-slug": typeof ProblemsProblemSlugRoute;
+  "/onboarding": typeof OnboardingIndexRoute;
+  "/problems": typeof ProblemsIndexRoute;
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/callback': typeof authCallbackRoute
-  '/login': typeof authLoginRoute
-  '/register': typeof authRegisterRoute
-  '/onboarding/$slug': typeof OnboardingSlugRoute
-  '/problems/$problem-slug': typeof ProblemsProblemSlugRoute
-  '/onboarding': typeof OnboardingIndexRoute
-  '/problems': typeof ProblemsIndexRoute
+  "/": typeof IndexRoute;
+  "/callback": typeof authCallbackRoute;
+  "/login": typeof authLoginRoute;
+  "/register": typeof authRegisterRoute;
+  "/onboarding/$slug": typeof OnboardingSlugRoute;
+  "/problems/$problem-slug": typeof ProblemsProblemSlugRoute;
+  "/onboarding": typeof OnboardingIndexRoute;
+  "/problems": typeof ProblemsIndexRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/callback': typeof authCallbackRoute
-  '/login': typeof authLoginRoute
-  '/register': typeof authRegisterRoute
-  '/onboarding/$slug': typeof OnboardingSlugRoute
-  '/problems/$problem-slug': typeof ProblemsProblemSlugRoute
-  '/onboarding/': typeof OnboardingIndexRoute
-  '/problems/': typeof ProblemsIndexRoute
+  __root__: typeof rootRoute;
+  "/": typeof IndexRoute;
+  "/callback": typeof authCallbackRoute;
+  "/login": typeof authLoginRoute;
+  "/register": typeof authRegisterRoute;
+  "/onboarding/$slug": typeof OnboardingSlugRoute;
+  "/problems/$problem-slug": typeof ProblemsProblemSlugRoute;
+  "/onboarding/": typeof OnboardingIndexRoute;
+  "/problems/": typeof ProblemsIndexRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
+  fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
-    | '/'
-    | '/callback'
-    | '/login'
-    | '/register'
-    | '/onboarding/$slug'
-    | '/problems/$problem-slug'
-    | '/onboarding'
-    | '/problems'
-  fileRoutesByTo: FileRoutesByTo
+    | "/"
+    | "/callback"
+    | "/login"
+    | "/register"
+    | "/onboarding/$slug"
+    | "/problems/$problem-slug"
+    | "/onboarding"
+    | "/problems";
+  fileRoutesByTo: FileRoutesByTo;
   to:
-    | '/'
-    | '/callback'
-    | '/login'
-    | '/register'
-    | '/onboarding/$slug'
-    | '/problems/$problem-slug'
-    | '/onboarding'
-    | '/problems'
+    | "/"
+    | "/callback"
+    | "/login"
+    | "/register"
+    | "/onboarding/$slug"
+    | "/problems/$problem-slug"
+    | "/onboarding"
+    | "/problems";
   id:
-    | '__root__'
-    | '/'
-    | '/callback'
-    | '/login'
-    | '/register'
-    | '/onboarding/$slug'
-    | '/problems/$problem-slug'
-    | '/onboarding/'
-    | '/problems/'
-  fileRoutesById: FileRoutesById
+    | "__root__"
+    | "/"
+    | "/callback"
+    | "/login"
+    | "/register"
+    | "/onboarding/$slug"
+    | "/problems/$problem-slug"
+    | "/onboarding/"
+    | "/problems/";
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  authCallbackRoute: typeof authCallbackRoute
-  authLoginRoute: typeof authLoginRoute
-  authRegisterRoute: typeof authRegisterRoute
-  OnboardingSlugRoute: typeof OnboardingSlugRoute
-  ProblemsProblemSlugRoute: typeof ProblemsProblemSlugRoute
-  OnboardingIndexRoute: typeof OnboardingIndexRoute
-  ProblemsIndexRoute: typeof ProblemsIndexRoute
+  IndexRoute: typeof IndexRoute;
+  authCallbackRoute: typeof authCallbackRoute;
+  authLoginRoute: typeof authLoginRoute;
+  authRegisterRoute: typeof authRegisterRoute;
+  OnboardingSlugRoute: typeof OnboardingSlugRoute;
+  ProblemsProblemSlugRoute: typeof ProblemsProblemSlugRoute;
+  OnboardingIndexRoute: typeof OnboardingIndexRoute;
+  ProblemsIndexRoute: typeof ProblemsIndexRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -215,11 +215,11 @@ const rootRouteChildren: RootRouteChildren = {
   ProblemsProblemSlugRoute: ProblemsProblemSlugRoute,
   OnboardingIndexRoute: OnboardingIndexRoute,
   ProblemsIndexRoute: ProblemsIndexRoute,
-}
+};
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
 /* prettier-ignore-end */
 

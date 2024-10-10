@@ -100,7 +100,7 @@ export const RegisterForm = () => {
                 <Input
                   onChange={(e) =>
                     setPassword(
-                      (e as ChangeEvent<HTMLInputElement>).target.value
+                      (e as ChangeEvent<HTMLInputElement>).target.value,
                     )
                   }
                   value={password}
