@@ -10,22 +10,28 @@
 
 // Import Routes
 
-import { Route as rootRoute } from "./routes/__root";
-import { Route as IndexImport } from "./routes/index";
-import { Route as ProblemsIndexImport } from "./routes/problems/index";
-import { Route as OnboardingIndexImport } from "./routes/onboarding/index";
-import { Route as ProblemsProblemSlugImport } from "./routes/problems/$problem-slug";
-import { Route as OnboardingSlugImport } from "./routes/onboarding/$slug";
-import { Route as authRegisterImport } from "./routes/(auth)/register";
-import { Route as authLoginImport } from "./routes/(auth)/login";
-import { Route as authCallbackImport } from "./routes/(auth)/callback";
+import { Route as rootRoute } from './routes/__root'
+import { Route as WaitlistImport } from './routes/waitlist'
+import { Route as IndexImport } from './routes/index'
+import { Route as ProblemsIndexImport } from './routes/problems/index'
+import { Route as OnboardingIndexImport } from './routes/onboarding/index'
+import { Route as ProblemsProblemSlugImport } from './routes/problems/$problem-slug'
+import { Route as OnboardingSlugImport } from './routes/onboarding/$slug'
+import { Route as authRegisterImport } from './routes/(auth)/register'
+import { Route as authLoginImport } from './routes/(auth)/login'
+import { Route as authCallbackImport } from './routes/(auth)/callback'
 
 // Create/Update Routes
 
-const IndexRoute = IndexImport.update({
-  path: "/",
+const WaitlistRoute = WaitlistImport.update({
+  path: '/waitlist',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
+
+const IndexRoute = IndexImport.update({
+  path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const ProblemsIndexRoute = ProblemsIndexImport.update({
   path: "/problems/",
@@ -66,148 +72,163 @@ const authCallbackRoute = authCallbackImport.update({
 
 declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    "/": {
-      id: "/";
-      path: "/";
-      fullPath: "/";
-      preLoaderRoute: typeof IndexImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/(auth)/callback": {
-      id: "/callback";
-      path: "/callback";
-      fullPath: "/callback";
-      preLoaderRoute: typeof authCallbackImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/(auth)/login": {
-      id: "/login";
-      path: "/login";
-      fullPath: "/login";
-      preLoaderRoute: typeof authLoginImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/(auth)/register": {
-      id: "/register";
-      path: "/register";
-      fullPath: "/register";
-      preLoaderRoute: typeof authRegisterImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/onboarding/$slug": {
-      id: "/onboarding/$slug";
-      path: "/onboarding/$slug";
-      fullPath: "/onboarding/$slug";
-      preLoaderRoute: typeof OnboardingSlugImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/problems/$problem-slug": {
-      id: "/problems/$problem-slug";
-      path: "/problems/$problem-slug";
-      fullPath: "/problems/$problem-slug";
-      preLoaderRoute: typeof ProblemsProblemSlugImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/onboarding/": {
-      id: "/onboarding/";
-      path: "/onboarding";
-      fullPath: "/onboarding";
-      preLoaderRoute: typeof OnboardingIndexImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/problems/": {
-      id: "/problems/";
-      path: "/problems";
-      fullPath: "/problems";
-      preLoaderRoute: typeof ProblemsIndexImport;
-      parentRoute: typeof rootRoute;
-    };
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/waitlist': {
+      id: '/waitlist'
+      path: '/waitlist'
+      fullPath: '/waitlist'
+      preLoaderRoute: typeof WaitlistImport
+      parentRoute: typeof rootRoute
+    }
+    '/(auth)/callback': {
+      id: '/callback'
+      path: '/callback'
+      fullPath: '/callback'
+      preLoaderRoute: typeof authCallbackImport
+      parentRoute: typeof rootRoute
+    }
+    '/(auth)/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof authLoginImport
+      parentRoute: typeof rootRoute
+    }
+    '/(auth)/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof authRegisterImport
+      parentRoute: typeof rootRoute
+    }
+    '/onboarding/$slug': {
+      id: '/onboarding/$slug'
+      path: '/onboarding/$slug'
+      fullPath: '/onboarding/$slug'
+      preLoaderRoute: typeof OnboardingSlugImport
+      parentRoute: typeof rootRoute
+    }
+    '/problems/$problem-slug': {
+      id: '/problems/$problem-slug'
+      path: '/problems/$problem-slug'
+      fullPath: '/problems/$problem-slug'
+      preLoaderRoute: typeof ProblemsProblemSlugImport
+      parentRoute: typeof rootRoute
+    }
+    '/onboarding/': {
+      id: '/onboarding/'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/problems/': {
+      id: '/problems/'
+      path: '/problems'
+      fullPath: '/problems'
+      preLoaderRoute: typeof ProblemsIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute;
-  "/callback": typeof authCallbackRoute;
-  "/login": typeof authLoginRoute;
-  "/register": typeof authRegisterRoute;
-  "/onboarding/$slug": typeof OnboardingSlugRoute;
-  "/problems/$problem-slug": typeof ProblemsProblemSlugRoute;
-  "/onboarding": typeof OnboardingIndexRoute;
-  "/problems": typeof ProblemsIndexRoute;
+  '/': typeof IndexRoute
+  '/waitlist': typeof WaitlistRoute
+  '/callback': typeof authCallbackRoute
+  '/login': typeof authLoginRoute
+  '/register': typeof authRegisterRoute
+  '/onboarding/$slug': typeof OnboardingSlugRoute
+  '/problems/$problem-slug': typeof ProblemsProblemSlugRoute
+  '/onboarding': typeof OnboardingIndexRoute
+  '/problems': typeof ProblemsIndexRoute
 }
 
 export interface FileRoutesByTo {
-  "/": typeof IndexRoute;
-  "/callback": typeof authCallbackRoute;
-  "/login": typeof authLoginRoute;
-  "/register": typeof authRegisterRoute;
-  "/onboarding/$slug": typeof OnboardingSlugRoute;
-  "/problems/$problem-slug": typeof ProblemsProblemSlugRoute;
-  "/onboarding": typeof OnboardingIndexRoute;
-  "/problems": typeof ProblemsIndexRoute;
+  '/': typeof IndexRoute
+  '/waitlist': typeof WaitlistRoute
+  '/callback': typeof authCallbackRoute
+  '/login': typeof authLoginRoute
+  '/register': typeof authRegisterRoute
+  '/onboarding/$slug': typeof OnboardingSlugRoute
+  '/problems/$problem-slug': typeof ProblemsProblemSlugRoute
+  '/onboarding': typeof OnboardingIndexRoute
+  '/problems': typeof ProblemsIndexRoute
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute;
-  "/": typeof IndexRoute;
-  "/callback": typeof authCallbackRoute;
-  "/login": typeof authLoginRoute;
-  "/register": typeof authRegisterRoute;
-  "/onboarding/$slug": typeof OnboardingSlugRoute;
-  "/problems/$problem-slug": typeof ProblemsProblemSlugRoute;
-  "/onboarding/": typeof OnboardingIndexRoute;
-  "/problems/": typeof ProblemsIndexRoute;
+  __root__: typeof rootRoute
+  '/': typeof IndexRoute
+  '/waitlist': typeof WaitlistRoute
+  '/callback': typeof authCallbackRoute
+  '/login': typeof authLoginRoute
+  '/register': typeof authRegisterRoute
+  '/onboarding/$slug': typeof OnboardingSlugRoute
+  '/problems/$problem-slug': typeof ProblemsProblemSlugRoute
+  '/onboarding/': typeof OnboardingIndexRoute
+  '/problems/': typeof ProblemsIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
-    | "/"
-    | "/callback"
-    | "/login"
-    | "/register"
-    | "/onboarding/$slug"
-    | "/problems/$problem-slug"
-    | "/onboarding"
-    | "/problems";
-  fileRoutesByTo: FileRoutesByTo;
+    | '/'
+    | '/waitlist'
+    | '/callback'
+    | '/login'
+    | '/register'
+    | '/onboarding/$slug'
+    | '/problems/$problem-slug'
+    | '/onboarding'
+    | '/problems'
+  fileRoutesByTo: FileRoutesByTo
   to:
-    | "/"
-    | "/callback"
-    | "/login"
-    | "/register"
-    | "/onboarding/$slug"
-    | "/problems/$problem-slug"
-    | "/onboarding"
-    | "/problems";
+    | '/'
+    | '/waitlist'
+    | '/callback'
+    | '/login'
+    | '/register'
+    | '/onboarding/$slug'
+    | '/problems/$problem-slug'
+    | '/onboarding'
+    | '/problems'
   id:
-    | "__root__"
-    | "/"
-    | "/callback"
-    | "/login"
-    | "/register"
-    | "/onboarding/$slug"
-    | "/problems/$problem-slug"
-    | "/onboarding/"
-    | "/problems/";
-  fileRoutesById: FileRoutesById;
+    | '__root__'
+    | '/'
+    | '/waitlist'
+    | '/callback'
+    | '/login'
+    | '/register'
+    | '/onboarding/$slug'
+    | '/problems/$problem-slug'
+    | '/onboarding/'
+    | '/problems/'
+  fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  authCallbackRoute: typeof authCallbackRoute;
-  authLoginRoute: typeof authLoginRoute;
-  authRegisterRoute: typeof authRegisterRoute;
-  OnboardingSlugRoute: typeof OnboardingSlugRoute;
-  ProblemsProblemSlugRoute: typeof ProblemsProblemSlugRoute;
-  OnboardingIndexRoute: typeof OnboardingIndexRoute;
-  ProblemsIndexRoute: typeof ProblemsIndexRoute;
+  IndexRoute: typeof IndexRoute
+  WaitlistRoute: typeof WaitlistRoute
+  authCallbackRoute: typeof authCallbackRoute
+  authLoginRoute: typeof authLoginRoute
+  authRegisterRoute: typeof authRegisterRoute
+  OnboardingSlugRoute: typeof OnboardingSlugRoute
+  ProblemsProblemSlugRoute: typeof ProblemsProblemSlugRoute
+  OnboardingIndexRoute: typeof OnboardingIndexRoute
+  ProblemsIndexRoute: typeof ProblemsIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  WaitlistRoute: WaitlistRoute,
   authCallbackRoute: authCallbackRoute,
   authLoginRoute: authLoginRoute,
   authRegisterRoute: authRegisterRoute,
@@ -230,6 +251,7 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/waitlist",
         "/callback",
         "/login",
         "/register",
@@ -241,6 +263,9 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/waitlist": {
+      "filePath": "waitlist.tsx"
     },
     "/callback": {
       "filePath": "(auth)/callback.tsx"
