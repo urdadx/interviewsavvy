@@ -8,7 +8,6 @@ export const ChatList = () => {
 				<HumanMessage />
 				<AIMessage />
 				<HumanMessage />
-				<AIMessage />
 			</ScrollArea>
 		</>
 	);

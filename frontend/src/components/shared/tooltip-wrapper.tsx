@@ -14,8 +14,8 @@ export function TooltipWrapper({ button, text }: TooltipWrapperProps) {
 				<Tooltip.Root>
 					<Tooltip.Trigger asChild>{button}</Tooltip.Trigger>
 					<Tooltip.Portal>
-						<Tooltip.Content content={text}>
-							<Tooltip.Arrow />
+						<Tooltip.Content color="soft" content={text}>
+							{text}
 						</Tooltip.Content>
 					</Tooltip.Portal>
 				</Tooltip.Root>

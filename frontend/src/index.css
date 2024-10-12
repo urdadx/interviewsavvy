@@ -15,3 +15,13 @@
 .backdrop-blur-lg {
   backdrop-filter: blur(16px);
 }
+
+@layer base {
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('./assets/fonts/Inter-Regular.ttf') format('truetype');
+  }
+}
