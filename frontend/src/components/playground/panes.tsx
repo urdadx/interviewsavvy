@@ -7,9 +7,7 @@ import {
 	ResizablePanel,
 	ResizablePanelGroup,
 } from "../ui/resizable";
-import { ScrollArea } from "../ui/scroll-area";
 import { Chat } from "./chat-panel/chat";
-import { ChatList } from "./chat-panel/chat-list";
 import { MonacoEditor } from "./code-editor/monaco-editor";
 import { ProblemDescriptionTab } from "./problem-description-tab";
 import { SolutionTab } from "./solution-tab";
@@ -85,9 +83,7 @@ export default function Component() {
 								value="solution"
 								className="flex-grow overflow-auto"
 							>
-								<ScrollArea>
-									<SolutionTab />
-								</ScrollArea>
+								<SolutionTab />
 							</Tabs.Content>
 						</Tabs>
 					</div>

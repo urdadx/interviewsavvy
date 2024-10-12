@@ -13,8 +13,8 @@ export const CodeTerminal = ({
 		<>
 			<div className="flex w-full bg-white justify-between items-center">
 				<div className="w-full h-9">
-					<Tabs defaultValue="output">
-						<Tabs.List>
+					<Tabs variant="underlined" className="" defaultValue="output">
+						<Tabs.List className="w-[190px] max-w-sm">
 							<Tabs.Trigger className="h-9" value="output">
 								Output
 							</Tabs.Trigger>
@@ -22,19 +22,13 @@ export const CodeTerminal = ({
 								Test cases
 							</Tabs.Trigger>
 						</Tabs.List>
-						<Tabs.Content
-							className={`${isCollapsed ? "hidden" : "flex"}`}
-							value="output"
-						>
+						<Tabs.Content value="output">
 							<ScrollArea className="w-full">
 								<CodeOutput />
 							</ScrollArea>
 						</Tabs.Content>
-						<Tabs.Content
-							className={`${isCollapsed ? "hidden" : "flex"} w-full`}
-							value="testcases"
-						>
-							<div className="w-full h-72 mx-4">
+						<Tabs.Content value="testcases">
+							<div className="w-full h-72 ">
 								<TestCases />
 							</div>
 						</Tabs.Content>

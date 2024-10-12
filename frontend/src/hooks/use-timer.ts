@@ -28,7 +28,7 @@ export const useTimer = (initialTime = 2700) => {
 	const resetTimer = (e: React.MouseEvent) => {
 		e.stopPropagation();
 		setIsRunning(false);
-		setTime(initialTime); // Reset to initial time
+		setTime(initialTime);
 	};
 
 	const formatTime = (timeInSeconds: number) => {
