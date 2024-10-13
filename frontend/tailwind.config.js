@@ -7,7 +7,11 @@ export default {
 		"node_modules/@lemonsqueezy/wedges/dist/**/*.{js,ts,jsx,tsx}",
 	],
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				regular: ["Inter", "sans-serif"],
+			},
+		},
 	},
 	darkMode: "class",
 	plugins: [

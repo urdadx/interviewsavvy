@@ -9,46 +9,40 @@ export const CodeTerminal = ({
   toggle,
   isCollapsed,
 }: { toggle: () => void; isCollapsed: boolean }) => {
-  return (
-    <>
-      <div className="flex w-full bg-white justify-between items-center">
-        <div className="w-full h-9">
-          <Tabs defaultValue="output">
-            <Tabs.List>
-              <Tabs.Trigger className="h-9" value="output">
-                Output
-              </Tabs.Trigger>
-              <Tabs.Trigger className="h-9" value="testcases">
-                Test cases
-              </Tabs.Trigger>
-            </Tabs.List>
-            <Tabs.Content
-              className={`${isCollapsed ? "hidden" : "flex"}`}
-              value="output"
-            >
-              <ScrollArea className="w-full">
-                <CodeOutput />
-              </ScrollArea>
-            </Tabs.Content>
-            <Tabs.Content
-              className={`${isCollapsed ? "hidden" : "flex"} w-full`}
-              value="testcases"
-            >
-              <div className="w-full h-72 mx-4">
-                <TestCases />
-              </div>
-            </Tabs.Content>
-          </Tabs>
-        </div>
-        <div className="h-9">
-          <Button
-            after={isCollapsed ? <ChevronUpIcon /> : <ChevronDownIcon />}
-            variant="transparent"
-            onClick={toggle}
-            className="h-9"
-          />
-        </div>
-      </div>
-    </>
-  );
+	return (
+		<>
+			<div className="flex w-full bg-white justify-between items-center">
+				<div className="w-full h-9">
+					<Tabs variant="underlined" className="" defaultValue="output">
+						<Tabs.List className="w-[190px] max-w-sm">
+							<Tabs.Trigger className="h-9" value="output">
+								Output
+							</Tabs.Trigger>
+							<Tabs.Trigger className="h-9" value="testcases">
+								Test cases
+							</Tabs.Trigger>
+						</Tabs.List>
+						<Tabs.Content value="output">
+							<ScrollArea className="w-full">
+								<CodeOutput />
+							</ScrollArea>
+						</Tabs.Content>
+						<Tabs.Content value="testcases">
+							<div className="w-full h-72 ">
+								<TestCases />
+							</div>
+						</Tabs.Content>
+					</Tabs>
+				</div>
+				<div className="h-9">
+					<Button
+						after={isCollapsed ? <ChevronUpIcon /> : <ChevronDownIcon />}
+						variant="transparent"
+						onClick={toggle}
+						className="h-9"
+					/>
+				</div>
+			</div>
+		</>
+	);
 };

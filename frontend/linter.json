@@ -5,7 +5,8 @@
 		"rules": {
 			"suspicious": {
 				"noExplicitAny": "off",
-				"noConsoleLog": "off"
+				"noConsoleLog": "off",
+				"noArrayIndexKey": "off"
 			},
 			"style": {
 				"noNonNullAssertion": "off"
