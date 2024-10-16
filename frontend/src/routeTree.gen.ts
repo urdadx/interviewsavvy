@@ -34,43 +34,43 @@ const IndexRoute = IndexImport.update({
 } as any)
 
 const ProblemsIndexRoute = ProblemsIndexImport.update({
-  path: '/problems/',
+  path: "/problems/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const OnboardingIndexRoute = OnboardingIndexImport.update({
-  path: '/onboarding/',
+  path: "/onboarding/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const ProblemsProblemSlugRoute = ProblemsProblemSlugImport.update({
-  path: '/problems/$problem-slug',
+  path: "/problems/$problem-slug",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const OnboardingSlugRoute = OnboardingSlugImport.update({
-  path: '/onboarding/$slug',
+  path: "/onboarding/$slug",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const authRegisterRoute = authRegisterImport.update({
-  path: '/register',
+  path: "/register",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const authLoginRoute = authLoginImport.update({
-  path: '/login',
+  path: "/login",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const authCallbackRoute = authCallbackImport.update({
-  path: '/callback',
+  path: "/callback",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
     '/': {
       id: '/'
@@ -178,7 +178,7 @@ export interface FileRoutesById {
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
+  fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
     | '/'
     | '/waitlist'
@@ -236,11 +236,11 @@ const rootRouteChildren: RootRouteChildren = {
   ProblemsProblemSlugRoute: ProblemsProblemSlugRoute,
   OnboardingIndexRoute: OnboardingIndexRoute,
   ProblemsIndexRoute: ProblemsIndexRoute,
-}
+};
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
 /* prettier-ignore-end */
 

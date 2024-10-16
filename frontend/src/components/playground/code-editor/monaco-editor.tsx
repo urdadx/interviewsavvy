@@ -1,13 +1,13 @@
 import {
-	Button,
-	Select,
-	SelectContent,
-	SelectGroup,
-	SelectIcon,
-	SelectItem,
-	SelectPortal,
-	SelectTrigger,
-	SelectValue,
+  Button,
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectIcon,
+  SelectItem,
+  SelectPortal,
+  SelectTrigger,
+  SelectValue,
 } from "@lemonsqueezy/wedges";
 import Editor from "@monaco-editor/react";
 import { RotateCcw, SettingsIcon } from "lucide-react";
@@ -34,10 +34,10 @@ export const LoadingSkeleton = () => {
 };
 
 export const MonacoEditor = () => {
-	const wrapper = useRef<HTMLDivElement>(null);
-	const [language, setLanguage] = useState("java");
+  const wrapper = useRef<HTMLDivElement>(null);
+  const [language, setLanguage] = useState("java");
 
-	const code = `
+  const code = `
 class Solution {
   public:
     vector<int> twoSum(vector<int>& nums, int target) {

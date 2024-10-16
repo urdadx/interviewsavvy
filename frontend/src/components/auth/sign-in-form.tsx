@@ -87,7 +87,7 @@ export const LoginForm = () => {
                 <Input
                   onChange={(e) =>
                     setPassword(
-                      (e as ChangeEvent<HTMLInputElement>).target.value
+                      (e as ChangeEvent<HTMLInputElement>).target.value,
                     )
                   }
                   value={password}

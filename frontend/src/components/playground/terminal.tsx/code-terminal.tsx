@@ -6,8 +6,8 @@ import { CodeOutput } from "./code-output";
 import { TestCases } from "./test-cases";
 
 export const CodeTerminal = ({
-	toggle,
-	isCollapsed,
+  toggle,
+  isCollapsed,
 }: { toggle: () => void; isCollapsed: boolean }) => {
 	return (
 		<>

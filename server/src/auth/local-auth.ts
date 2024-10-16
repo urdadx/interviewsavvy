@@ -3,6 +3,8 @@ import { Strategy as LocalStrategy } from "passport-local";
 import { prisma } from "../config/db";
 import { logger } from "../config/logger";
 import { verifyPassword } from "../helpers/auth-helpers";
+import type { VerifyCallback } from "passport-google-oauth2";
+import type { UserData } from "@prisma/client";
 
 const localAuth = new LocalStrategy(
   {
@@ -30,7 +32,7 @@ const localAuth = new LocalStrategy(
 
       const isMatch = await verifyPassword(
         password,
-        user.passwordHash as string,
+        user.passwordHash as string
       );
 
       if (!isMatch) {
@@ -42,14 +44,14 @@ const localAuth = new LocalStrategy(
       logger.error(error);
       return done(error);
     }
-  },
+  }
 );
 
-const serialize = (user: any, done: any) => {
-  done(null, user.id);
+const serialize = (user: Express.User, done: VerifyCallback) => {
+  done(null, (user as Partial<UserData>).id);
 };
 
-const deserialize = async (userId: any, done: any) => {
+const deserialize = async (userId: string, done: VerifyCallback) => {
   try {
     const user = await prisma.userData.findUnique({
       where: {
