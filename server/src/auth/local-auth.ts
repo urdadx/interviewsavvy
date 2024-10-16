@@ -32,7 +32,7 @@ const localAuth = new LocalStrategy(
 
       const isMatch = await verifyPassword(
         password,
-        user.passwordHash as string
+        user.passwordHash as string,
       );
 
       if (!isMatch) {
@@ -44,7 +44,7 @@ const localAuth = new LocalStrategy(
       logger.error(error);
       return done(error);
     }
-  }
+  },
 );
 
 const serialize = (user: Express.User, done: VerifyCallback) => {

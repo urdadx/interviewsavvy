@@ -12,10 +12,8 @@ export const ProblemDescriptionTab = () => {
       </h2>
       <div className="text-sm text-muted-foreground">
         <div
-          dangerouslySetInnerHTML={{
-            __html: problem?.description,
-          }}
         />
+        {problem?.description}
       </div>
     </div>
   );

@@ -74,7 +74,7 @@ const googleAuth = new GoogleStrategy(
 
       done(null, user);
     } catch (error) {}
-  }
+  },
 );
 
 const serialize = (user: Express.User, done: VerifyCallback) => {
