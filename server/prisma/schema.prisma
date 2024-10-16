@@ -2,10 +2,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
-generator erd {
-  provider = "prisma-erd-generator"
-  output   = "../ERD.svg"
-}
+// generator erd {
+//   provider = "prisma-erd-generator"
+//   output   = "../ERD.svg"
+// }
 
 datasource db {
   provider = "postgresql"
@@ -16,6 +16,17 @@ enum Difficulty {
   EASY
   MEDIUM
   HARD
+}
+
+enum Verdict {
+  ACCEPTED
+  PENDING
+  REJECTED
+}
+
+enum InterviewType {
+  TECH
+  NON_TECH
 }
 
 model UserData {
@@ -32,6 +43,7 @@ model UserData {
   InterviewSessions InterviewSession[]
   UserPerformances  UserPerformance[]
   AuthProvider      AuthProvider[]
+  Submission        Submission[]
 }
 
 model AuthProvider {
@@ -45,10 +57,10 @@ model AuthProvider {
 }
 
 model InterviewSession {
-  id            String  @id @default(cuid())
+  id            String        @id @default(cuid())
   userId        String
   duration      Float
-  interviewType String
+  interviewType InterviewType @default(TECH)
   problemSetId  String? // Optional field for problem set if it's a tech interview
 
   createdAt DateTime @default(now())
@@ -61,17 +73,62 @@ model InterviewSession {
 }
 
 model ProblemSet {
-  id          String     @id @default(cuid())
-  name        String
-  slug        String     @unique
-  description String
-  difficulty  Difficulty
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id              String     @id @default(cuid())
+  name            String
+  slug            String     @unique
+  description     String
+  solution        String
+  codeStub        String
+  solutionArticle String?
+  hasSolved       Boolean    @default(false)
+  difficulty      Difficulty
+  questionId      Int        @default(autoincrement())
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
 
   // Relations
   InterviewSessions InterviewSession[]
+  Submission        Submission[]
+  TestCase          TestCase[]
+}
+
+model ProblemTag {
+  id   String @id @default(cuid())
+  name String
+}
+
+model TestCase {
+  id             String     @id @default(cuid())
+  input          String
+  expectedOutput String
+  isDefault      Boolean
+  problemSetId   String
+  problemSet     ProblemSet @relation(fields: [problemSetId], references: [id])
+}
+
+model Language {
+  id         String       @id @default(cuid())
+  name       String
+  judge0Id   Int
+  Submission Submission[]
+}
+
+model Submission {
+  id           String   @id @default(cuid())
+  userId       String
+  problemSetId String
+  code         String
+  runtime      Float
+  memory       Float
+  verdict      Verdict  @default(PENDING)
+  languageId   String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  // Relations
+  language   Language   @relation(fields: [languageId], references: [id])
+  user       UserData   @relation(fields: [userId], references: [id])
+  problemSet ProblemSet @relation(fields: [problemSetId], references: [id])
 }
 
 model UserPerformance {
