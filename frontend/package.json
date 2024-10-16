@@ -46,6 +46,7 @@
 		"autoprefixer": "^10.4.20",
 		"globals": "^15.9.0",
 		"postcss": "^8.4.47",
+		"shared": "link:../shared",
 		"tailwindcss": "^3.4.13",
 		"typescript": "^5.5.3",
 		"typescript-eslint": "^8.0.1",

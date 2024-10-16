@@ -8,11 +8,10 @@ export const ProblemDescriptionTab = () => {
   return (
     <div className="">
       <h2 className="text-lg font-semibold mb-4 text-capitalize">
-        {problem?.name}
+        {problem?.questionId}. {problem?.name}
       </h2>
       <div className="text-sm text-muted-foreground">
-        <div
-        />
+        <div />
         {problem?.description}
       </div>
     </div>

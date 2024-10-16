@@ -1,4 +1,4 @@
-export type ApiResponse<T = { message: string }> = T | { message: string };
+export type ApiResponse<T = { message: string }> = T;
 
 export type ApiResponsePaginated<T> = {
   data: T[];

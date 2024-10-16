@@ -15,23 +15,23 @@ const queryClient = new QueryClient();
 
 // Register the router instance for type safety
 declare module "@tanstack/react-router" {
-	interface Register {
-		router: typeof router;
-	}
+  interface Register {
+    router: typeof router;
+  }
 }
 
 // biome-ignore lint/style/noNonNullAssertion: <explanation>
 const rootElement = document.getElementById("root")!;
 if (!rootElement.innerHTML) {
-	const root = ReactDOM.createRoot(rootElement);
-	root.render(
-		<StrictMode>
-			<QueryClientProvider client={queryClient}>
-				<UserProvider>
-					<RouterProvider router={router} />
-				</UserProvider>
-				<ReactQueryDevtools position="left" initialIsOpen={false} />
-			</QueryClientProvider>
-		</StrictMode>,
-	);
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(
+    <StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <UserProvider>
+          <RouterProvider router={router} />
+        </UserProvider>
+        <ReactQueryDevtools position="left" initialIsOpen={false} />
+      </QueryClientProvider>
+    </StrictMode>,
+  );
 }

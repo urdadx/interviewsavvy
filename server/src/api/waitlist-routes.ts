@@ -18,7 +18,7 @@ router.post("/submit", async (req, res, next) => {
           api_key: process.env.EMAIL_OCTOPUS_KEY,
           email_address: email,
         }),
-      }
+      },
     );
 
     if (!response.ok) {

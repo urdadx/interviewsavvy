@@ -22,7 +22,7 @@ router.get(
   passport.authenticate("google", {
     successRedirect: `${process.env.FRONTEND_URL}/callback`,
     failureRedirect: "/error",
-  })
+  }),
 );
 
 router.post("/login", passport.authenticate("local"), (req, res, next) => {
@@ -52,7 +52,7 @@ router.post("/signup", async (req, res, next) => {
     if (!isValidPassword(password)) {
       throw createHttpError(
         400,
-        "Weak password. Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character."
+        "Weak password. Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character.",
       );
     }
 
@@ -103,7 +103,8 @@ router.post("/signup", async (req, res, next) => {
 
 router.get("/me", authGuard, (req, res, next) => {
   try {
-    res.status(200).json({ ...req.user });
+    const response: ApiResponse<User> = { ...req.user } as ApiResponse<User>;
+    res.status(200).json(response);
   } catch (error) {
     next(error);
   }
@@ -116,7 +117,7 @@ router.post("/logout", authGuard, (req, res, next) => {
         if (error) {
           throw createHttpError(400, "Bad/Invalid logout request");
         }
-      })
+      }),
     );
 
     const response: ApiResponse = {

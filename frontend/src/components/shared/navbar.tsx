@@ -58,7 +58,9 @@ export const Navbar = () => {
                     params={{ "problem-slug": problem?.slug }}
                     className="flex items-center gap-2 hover:bg-gray-100 rounded-md p-2"
                   >
-                    <span>{problem?.name}</span>
+                    <span>
+                      {problem.questionId}. {problem?.name}
+                    </span>
                   </Link>
                 ))}
               </div>
