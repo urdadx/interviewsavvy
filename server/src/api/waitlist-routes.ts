@@ -1,4 +1,6 @@
+import type { ApiResponse } from "@shared/types/api-response";
 import { Router } from "express";
+import createHttpError from "http-errors";
 
 export const router = Router();
 
@@ -16,14 +18,16 @@ router.post("/submit", async (req, res, next) => {
           api_key: process.env.EMAIL_OCTOPUS_KEY,
           email_address: email,
         }),
-      }
+      },
     );
 
-    if (response.status === 200) {
-      res.status(200).send("Email submitted successfully!");
-    } else {
-      res.status(response.status).send("Failed to submit email!");
+    if (!response.ok) {
+      throw createHttpError(response.status, "Failed to submit email!");
     }
+
+    const _response: ApiResponse = { message: "Email submitted successfully!" };
+
+    res.status(200).json(_response);
   } catch (error) {
     next(error);
   }

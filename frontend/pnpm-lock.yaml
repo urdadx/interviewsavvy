@@ -100,6 +100,9 @@ devDependencies:
   postcss:
     specifier: ^8.4.47
     version: 8.4.47
+  shared:
+    specifier: link:../shared
+    version: link:../shared
   tailwindcss:
     specifier: ^3.4.13
     version: 3.4.13
