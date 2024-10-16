@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import useMe from "../hooks/use-me";
+import useMe from "../hooks/queries/use-me";
 
 type Props = {
   children: React.ReactNode;
@@ -27,9 +27,9 @@ export const userContext = createContext<UserContext>({
 const UserProvider = ({ children }: Props) => {
   const { data: user, isPending: userLoading } = useMe();
 
-	// if (userLoading || !user) {
-	// 	return <div>The hell is going on?</div>;
-	// }
+  // if (userLoading || !user) {
+  // 	return <div>The hell is going on?</div>;
+  // }
 
   return (
     <userContext.Provider value={{ user, userLoading }}>
