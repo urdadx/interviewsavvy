@@ -15,7 +15,7 @@ export const PromptForm = () => {
 				<div className="flex gap-1 w-full items-center">
 					<div className="relative w-full">
 						<Textarea
-							className="resize-none pr-10 min-h-10"
+							className="resize-none pr-10 min-h-16"
 							placeholder="Ask me anything..."
 							onChange={(event) =>
 								handleInputChange(
@@ -25,7 +25,7 @@ export const PromptForm = () => {
 						/>
 						<Button
 							shape="pill"
-							className="absolute right-2 top-4 "
+							className="absolute right-2 bottom-2"
 							before={isTyping ? <ArrowUpIcon /> : <MicrophoneIcon />}
 						/>
 					</div>
