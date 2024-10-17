@@ -16,6 +16,7 @@ import {
 	DropdownMenuTrigger,
 } from "../../components/ui/dropdown-menu";
 
+import useFetchProblemList from "../../hooks/queries/use-fetch-problem-list";
 import useAuth from "../../hooks/use-auth";
 import { CountDownTimerButton } from "../countdown-timer-button";
 import { VaulDrawer } from "./drawer";
@@ -23,6 +24,8 @@ import { TooltipWrapper } from "./tooltip-wrapper";
 
 export const Navbar = () => {
 	const { user } = useAuth();
+	const { data } = useFetchProblemList();
+
 	return (
 		<>
 			<header className="sticky top-0 flex justify-between h-14 items-center gap-4  bg-surface-50 px-4 md:px-6">
@@ -46,7 +49,20 @@ export const Navbar = () => {
 								Problem List
 							</Button>
 						}
-						content={<div>Hello World</div>}
+						content={
+							<div className="h-[890px] overflow-auto">
+								{data?.data.map((problem) => (
+									<Link
+										key={problem?.id}
+										to={"/problems/$problem-slug"}
+										params={{ "problem-slug": problem?.slug }}
+										className="flex items-center gap-2 hover:bg-gray-100 rounded-md p-2"
+									>
+										<span>{problem?.name}</span>
+									</Link>
+								))}
+							</div>
+						}
 					/>
 				</nav>
 				<div className="flex h-9 justify-end items-center gap-2">

@@ -14,6 +14,6 @@ export const googleLogin = () => {
     "",
     `toolbar=no, location=no, directories=no, status=no, menubar=no, 
     scrollbars=no, resizable=no, copyhistory=no, width=${POPUP_WIDTH}, 
-    height=${POPUP_HEIGHT}, top=${TOP}, left=${LEFT}`
+    height=${POPUP_HEIGHT}, top=${TOP}, left=${LEFT}`,
   );
 };

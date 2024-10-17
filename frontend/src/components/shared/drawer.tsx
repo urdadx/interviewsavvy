@@ -1,8 +1,8 @@
 import { Drawer } from "vaul";
 
 interface VaulDrawerProps {
-	button: React.ReactNode;
-	content: React.ReactNode;
+  button: React.ReactNode;
+  content: React.ReactNode;
 }
 
 export const VaulDrawer: React.FC<VaulDrawerProps> = ({ button, content }) => {

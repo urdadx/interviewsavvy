@@ -2,7 +2,7 @@ import { Router } from "express";
 
 export const router = Router();
 
-router.post("/submit", async (req, res) => {
+router.post("/submit", async (req, res, next) => {
 	const { email } = req.body;
 	try {
 		const response = await fetch(
@@ -25,7 +25,6 @@ router.post("/submit", async (req, res) => {
 			res.status(response.status).send("Failed to submit email!");
 		}
 	} catch (error) {
-		console.error("Error:", error);
-		res.status(500).send("Internal server error");
+		next(error);
 	}
 });

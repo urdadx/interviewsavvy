@@ -1,10 +1,12 @@
 import passport from "passport";
 import {
   Strategy as GoogleStrategy,
+  type VerifyCallback,
   type StrategyOptions,
 } from "passport-google-oauth2";
 import { prisma } from "../config/db";
 import { logger } from "../config/logger";
+import type { UserData } from "@prisma/client";
 
 const googleAuth = new GoogleStrategy(
   {
@@ -72,14 +74,14 @@ const googleAuth = new GoogleStrategy(
 
       done(null, user);
     } catch (error) {}
-  },
+  }
 );
 
-const serialize = (user: any, done: any) => {
-  done(null, user.id);
+const serialize = (user: Express.User, done: VerifyCallback) => {
+  done(null, (user as Partial<UserData>).id);
 };
 
-const deserialize = async (userId: any, done: any) => {
+const deserialize = async (userId: string, done: VerifyCallback) => {
   try {
     const user = await prisma.userData.findUnique({
       where: {
