@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import * as fs from "fs";
+import * as fs from "node:fs";
 
 type Problem = {
   id: number;

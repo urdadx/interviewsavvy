@@ -11,6 +11,8 @@ import {
   prepareUser,
 } from "../helpers/auth-helpers";
 import { prisma } from "../config/db";
+import type { ApiResponse } from "@shared/types/api-response";
+import type { User } from "@shared/types/user";
 
 export const router = Router();
 
@@ -23,13 +25,20 @@ router.get(
   }),
 );
 
-router.post("/login", passport.authenticate("local"), (req, res) => {
-  if (req.user) {
-    res.status(200).json({ message: "Login successfull" });
-    return;
-  }
+router.post("/login", passport.authenticate("local"), (req, res, next) => {
+  try {
+    if (!req.user) {
+      throw createHttpError(400, "Login failed");
+    }
 
-  res.status(400).json({ message: "Login failed" });
+    const response: ApiResponse = {
+      message: "Login successfull",
+    };
+
+    res.status(200).json(response);
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.post("/signup", async (req, res, next) => {
@@ -37,16 +46,14 @@ router.post("/signup", async (req, res, next) => {
     const { name, email, password } = req.body;
 
     if (!isValidEmail(email)) {
-      res.status(400).json({ message: "Invalid email format." });
-      return;
+      throw createHttpError(400, "Invalid email format.");
     }
 
     if (!isValidPassword(password)) {
-      res.status(400).json({
-        message:
-          "Weak password. Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character.",
-      });
-      return;
+      throw createHttpError(
+        400,
+        "Weak password. Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character.",
+      );
     }
 
     const userExists = await prisma.userData.findUnique({
@@ -54,8 +61,7 @@ router.post("/signup", async (req, res, next) => {
     });
 
     if (userExists) {
-      res.status(400).json({ message: "User with this email already exists" });
-      return;
+      throw createHttpError(400, "User with this email already exists");
     }
 
     const { avatarUrl, hashedPassword } = await prepareUser(email, password);
@@ -83,8 +89,12 @@ router.post("/signup", async (req, res, next) => {
       },
     });
 
+    const response: ApiResponse = {
+      message: "Signup successfull",
+    };
+
     passport.authenticate("local")(req, res, () => {
-      res.status(200).json({ message: "Signup successfull" });
+      res.status(200).json(response);
     });
   } catch (error) {
     next(error);
@@ -93,7 +103,8 @@ router.post("/signup", async (req, res, next) => {
 
 router.get("/me", authGuard, (req, res, next) => {
   try {
-    res.status(200).json({ ...req.user });
+    const response: ApiResponse<User> = { ...req.user } as ApiResponse<User>;
+    res.status(200).json(response);
   } catch (error) {
     next(error);
   }
@@ -108,6 +119,10 @@ router.post("/logout", authGuard, (req, res, next) => {
         }
       }),
     );
+
+    const response: ApiResponse = {
+      message: "Logged out successfully",
+    };
 
     res.status(200).json({
       message: "Logged out successfully",

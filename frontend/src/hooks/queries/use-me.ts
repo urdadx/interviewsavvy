@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEYS } from "../../constants/query-keys";
 import { api } from "../../api";
+import type { ApiResponse } from "shared/dist/api-response";
+import type { User } from "shared/dist/user";
 
 export default function useMe() {
-  return useQuery({
+  return useQuery<ApiResponse<User>>({
     queryKey: QUERY_KEYS.ME,
     queryFn: async () => {
       try {
