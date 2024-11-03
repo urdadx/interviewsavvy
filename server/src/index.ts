@@ -5,13 +5,13 @@ import passport from "passport";
 import { router as authRoutes } from "./api/auth-routes";
 import { router as docsRoutes } from "./api/docs-routes";
 import { router as indexRoutes } from "./api/index-routes";
-import { router as waitlistRoutes } from "./api/waitlist-routes";
 import { router as problemsRoutes } from "./api/problems-routes";
+import { router as waitlistRoutes } from "./api/waitlist-routes";
 import {
-  errorLogger,
-  httpLogger,
-  logger,
-  notFoundLogger,
+	errorLogger,
+	httpLogger,
+	logger,
+	notFoundLogger,
 } from "./config/logger";
 import { cors as _cors } from "./middleware/cors";
 import { session as _session } from "./middleware/session";
@@ -40,7 +40,7 @@ app.use(notFoundLogger);
 app.use(errorLogger);
 
 app.listen(process.env.PORT || 8000, () => {
-  logger.info(
-    `Server is running on: http://localhost:${process.env.PORT || 8000} 🚀`,
-  );
+	logger.info(
+		`Server is running on: http://localhost:${process.env.PORT || 8000} 🚀`,
+	);
 });
