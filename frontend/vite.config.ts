@@ -6,7 +6,7 @@ import { defineConfig } from "vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [TanStackRouterVite({ routeToken: "layout" }), viteReact()],
+	plugins: [TanStackRouterVite(), viteReact()],
 	resolve: {
 		alias: {
 			"@shared": "../shared/*",
