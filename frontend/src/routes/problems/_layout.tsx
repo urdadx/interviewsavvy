@@ -4,7 +4,7 @@ import { AppSidebar } from "../../components/app-sidebar";
 import { Button } from "@lemonsqueezy/wedges";
 import { SidebarInset, SidebarProvider } from "../../components/ui/sidebar";
 
-export const Route = createFileRoute("/problems")({
+export const Route = createFileRoute("/problems/_layout")({
 	component: Layout,
 });
 
